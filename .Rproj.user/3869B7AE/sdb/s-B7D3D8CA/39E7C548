@@ -1,0 +1,18 @@
+{
+    "contents" : "best <- function(state, outcome) {\n        ## State: 7\n        ## HeartAttack: 11  \n        ## Hearth Failure: 17\n        ## Pneumonia: 23\n        \n        ## Read outcome data\n        outcome.data <- read.csv(\"data/outcome-of-care-measures.csv\",colClasses =\"character\")\n        outcome.state <- unique(outcome.data[[7]])\n        outcomes <- c(\"heart attack\",\"heart failure\",\"pneumonia\")\n        ## check if state is valid \n        if (!sum(outcome.state==state)) {\n                stop(\"invalid state\")\n                \n        }\n        ## check if outcome arg is valid\n        if (!sum(outcomes==outcome)){\n                stop(\"invalid outcome\")\n        }\n        ## associate outcome to the correct column index\n        if (outcome == \"heart attack\") {\n             ouctomes.index <- 11\n         }\n        else if(outcome==\"heart failure\"){\n             outcomes.index <- 17\n        }\n        else if (outcome==\"pneumonia\"){\n             outcomes.index <- 23\n        }\n        ## splicing the dataframe to retain the hospital name, state and outcome value\n        outcome.filtered <- outcome.data[,c(2,7,outcomes.index)]\n        colnames(outcome.filtered) <- c(\"Hospital\",\"State\",\"Outcome\")\n        ## coercing the type for outcome from Char to numeric (NAs will be introduced but that's OK)\n        suppressWarnings(outcome.filtered$Outcome <- as.numeric(outcome.filtered$Outcome))\n        ## selecting the state observations\n        outcome.filtered <- outcome.filtered[outcome.filtered[[2]]==state,]\n        ## we now have a data frame outcome.filtered with 3 variables\n        ## let's find the min\n        outcome.min <- min(outcome.filtered[[3]],na.rm=TRUE)\n        ## let's filter the dataframe to get all possible hospitals meeting the min\n        outcome.filtered <- outcome.filtered[outcome.filtered[[3]]==outcome.min,]\n        ## Return hospital name in that state with lowest 30-day death\n        ## rate\n        return(outcome.filtered[[1,1]])\n        \n}",
+    "created" : 1457044677343.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3949346687",
+    "id" : "39E7C548",
+    "lastKnownWriteTime" : 1457056692,
+    "path" : "~/science-experiment/ProgrammingAssignment3/data/best.R",
+    "project_path" : "data/best.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 4,
+    "source_on_save" : true,
+    "type" : "r_source"
+}

@@ -1,0 +1,18 @@
+{
+    "contents" : "## Test harness for prog assignment 3\n## checking conditions\nprint(best(\"TX\",\"heart failure\"))\nbest(\"MD\",\"heart attack\")\nbest(\"MD\",\"pneumonia\")\ntry(best(\"BB\",\"heart attack\"))\ntry(best(\"NY\",\"hert attack\"))",
+    "created" : 1456920886701.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4258054449",
+    "id" : "7919381D",
+    "lastKnownWriteTime" : 1457055551,
+    "path" : "~/science-experiment/ProgrammingAssignment3/data/testharness.R",
+    "project_path" : "data/testharness.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : true,
+    "type" : "r_source"
+}
