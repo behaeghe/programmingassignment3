@@ -1,4 +1,3 @@
-library(dplyr)
 rankhospital <- function(state, outcome,rank="best") {
         ## State: 7
         ## HeartAttack: 11  
@@ -62,7 +61,7 @@ rankhospital <- function(state, outcome,rank="best") {
 
 
         outcome.rankvalue <- outcome.ranked[rank]
-        message(outcome.rankvalue)
+        ##message(outcome.rankvalue)
         outcome.filtered <- outcome.filtered[outcome.filtered$Outcome==outcome.rankvalue & !(is.na(outcome.filtered$Outcome)),]
         
         # doing some ranking

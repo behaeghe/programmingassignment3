@@ -1,0 +1,18 @@
+{
+    "contents" : "## Helpfer functions for assignment 3 exercise\nvalidoutcome <- function(outcome){\n        ## check that the ouctome argument matches one of \"heart attack\",\"heart failure\",\"pneumonia\"\n        outcomes <- c(\"heart attack\",\"heart failure\",\"pneumonia\")\n        return(as.logical(sum(outcome==ouctomes)))\n}\nvalidstate <- function(state,state.list) {\n        ## check that the state vairable is in state.list\n        return(as.logical(sum(state.list==state)))\n}\nreadoutcomedata <- function(file.path,oindex) {\n        ## read and prep the ouctome data\n        df <- read.csv(file.path,colClasses =\"character\")\n        df <- df[,c(2,7,oindex)]\n        colnames(df) <- c(\"Hospital\",\"State\",\"Outcome\")\n        ## coercing the type for outcome from Char to numeric (NAs will be introduced but that's OK)\n        suppressWarnings(df$Outcome <- as.numeric(df$Outcome))\n        return(df)\n}\ngetoutcomeindex <- function(outcome){\n        if (outcome == \"heart attack\") {\n               return(11) \n        }\n        else if(outcome==\"heart failure\"){\n                return(17)\n        }\n        else if (outcome==\"pneumonia\"){\n                return(23)\n        }\n        return(NA)\n}",
+    "created" : 1457114536644.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "516348334",
+    "id" : "548EC1AB",
+    "lastKnownWriteTime" : 1457118694,
+    "path" : "~/science-experiment/ProgrammingAssignment3/helper.R",
+    "project_path" : "helper.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 5,
+    "source_on_save" : true,
+    "type" : "r_source"
+}

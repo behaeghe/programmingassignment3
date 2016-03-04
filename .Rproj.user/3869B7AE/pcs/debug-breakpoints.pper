@@ -17,17 +17,32 @@
                 "type" : 0
             },
             {
-                "editor_line_number" : 66,
+                "editor_line_number" : 65,
                 "editor_state" : 1,
                 "function_name" : "rankhospital",
                 "function_steps" : "19",
                 "id" : 24,
                 "is_package_breakpoint" : false,
                 "is_pending_debug_completion" : false,
-                "line_number" : 66,
+                "line_number" : 65,
                 "needs_updated_steps" : false,
                 "package_name" : "",
                 "path" : "~/science-experiment/ProgrammingAssignment3/data/rankhospital.R",
+                "state" : 1,
+                "type" : 0
+            },
+            {
+                "editor_line_number" : 23,
+                "editor_state" : 1,
+                "function_name" : "rankall",
+                "function_steps" : "7,4,3",
+                "id" : 44,
+                "is_package_breakpoint" : false,
+                "is_pending_debug_completion" : false,
+                "line_number" : 23,
+                "needs_updated_steps" : false,
+                "package_name" : "",
+                "path" : "~/science-experiment/ProgrammingAssignment3/rankall.R",
                 "state" : 1,
                 "type" : 0
             }
