@@ -1,0 +1,51 @@
+{
+    "debugBreakpointsState" : {
+        "breakpoints" : [
+            {
+                "editor_line_number" : 31,
+                "editor_state" : 1,
+                "function_name" : "best",
+                "function_steps" : "8",
+                "id" : 15,
+                "is_package_breakpoint" : false,
+                "is_pending_debug_completion" : false,
+                "line_number" : 31,
+                "needs_updated_steps" : false,
+                "package_name" : "",
+                "path" : "~/science-experiment/ProgrammingAssignment3/data/best.R",
+                "state" : 1,
+                "type" : 0
+            },
+            {
+                "editor_line_number" : 68,
+                "editor_state" : 1,
+                "function_name" : "rankhospital",
+                "function_steps" : "17",
+                "id" : 23,
+                "is_package_breakpoint" : false,
+                "is_pending_debug_completion" : false,
+                "line_number" : 68,
+                "needs_updated_steps" : false,
+                "package_name" : "",
+                "path" : "~/science-experiment/ProgrammingAssignment3/data/rankhospital.R",
+                "state" : 1,
+                "type" : 0
+            },
+            {
+                "editor_line_number" : 54,
+                "editor_state" : 1,
+                "function_name" : "rankhospital",
+                "function_steps" : "16",
+                "id" : 24,
+                "is_package_breakpoint" : false,
+                "is_pending_debug_completion" : false,
+                "line_number" : 54,
+                "needs_updated_steps" : false,
+                "package_name" : "",
+                "path" : "~/science-experiment/ProgrammingAssignment3/data/rankhospital.R",
+                "state" : 1,
+                "type" : 0
+            }
+        ]
+    }
+}

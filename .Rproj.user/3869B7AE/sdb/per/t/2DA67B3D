@@ -1,0 +1,18 @@
+{
+    "contents" : "library(dplyr)\nrankhospital <- function(state, outcome,rank=\"best\") {\n        ## State: 7\n        ## HeartAttack: 11  \n        ## Hearth Failure: 17\n        ## Pneumonia: 23\n        \n        ## Read outcome data\n        outcome.data <- read.csv(\"data/outcome-of-care-measures.csv\",colClasses =\"character\")\n        outcome.state <- unique(outcome.data[[7]])\n        outcomes <- c(\"heart attack\",\"heart failure\",\"pneumonia\")\n        ## check if state is valid \n        if (!sum(outcome.state==state)) {\n                stop(\"invalid state\")\n                \n        }\n        ## check if outcome arg is valid\n        if (!sum(outcomes==outcome)){\n                stop(\"invalid outcome\")\n        }\n        ## associate outcome to the correct column index\n        if (outcome == \"heart attack\") {\n                outcomes.index <- 11 \n        }\n        else if(outcome==\"heart failure\"){\n                outcomes.index <- 17\n        }\n        else if (outcome==\"pneumonia\"){\n                ouctomes.index <- 23\n        }\n        ## splicing the dataframe to retain the hospital name, state and outcome value\n        outcome.filtered <- outcome.data[,c(2,7,outcomes.index)]\n        colnames(outcome.filtered) <- c(\"Hospital\",\"State\",\"Outcome\")\n        ## coercing the type for outcome from Char to numeric (NAs will be introduced but that's OK)\n        suppressWarnings(outcome.filtered$Outcome <- as.numeric(outcome.filtered$Outcome))\n        ## selecting the state observations\n        outcome.filtered <- outcome.filtered[outcome.filtered$State==state,]\n        ## Now, let's get the outcome values, order them, remove the NA and find a rank value\n        outcome.ranked <- sort(unique(outcome.filtered$Outcome),na.last=NA, decreasing =TRUE)\n        ## find the rank\n        if (rank > length(outcome.ranked)){\n                return(\"NA\")\n        }\n        if (rank==\"best\") {\n                rank <- 1\n        } \n        else if (rank==\"worst\"){\n                rank <- length(outcome.ranked)\n        }\n        else if (is.numeric(rank)){\n                rank <- rank\n        }\n        outcome.rankvalue <- outcome.ranked[rank]\n        outcome.filtered <- outcome.filtered[outcome.filtered$Outcome==outcome.rankvalue & !(is.na(outcome.filtered$Outcome)),]\n        \n        # doing some ranking\n#         with (outcome.filtered,{\n#                 rank <-  \n#         })\n                \n        ## we now have a data frame outcome.filtered with 3 variables\n        ## let's find the min\n        #outcome.min <- min(outcome.filtered[[3]],na.rm=TRUE)\n        ## let's filter the dataframe to get all possible hospitals meeting the min\n        #outcome.filtered <- outcome.filtered[outcome.filtered[[3]]==outcome.min,]\n        ## Return hospital name in that state with lowest 30-day death\n        ## rate\n        return(outcome.filtered[[1,1]])\n        \n}",
+    "created" : 1457039606220.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1798373120",
+    "id" : "2DA67B3D",
+    "lastKnownWriteTime" : 1457059195,
+    "path" : "~/science-experiment/ProgrammingAssignment3/data/rankhospital.R",
+    "project_path" : "data/rankhospital.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 8,
+    "source_on_save" : true,
+    "type" : "r_source"
+}
