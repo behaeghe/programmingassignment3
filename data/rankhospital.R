@@ -4,12 +4,11 @@ rankhospital <- function(state, outcome,rank="best") {
         ## HeartAttack: 11  
         ## Hearth Failure: 17
         ## Pneumonia: 23
-        
-        ## Read outcome data
+        ## loading outcome data and state list
         outcome.data <- read.csv("data/outcome-of-care-measures.csv",colClasses ="character")
         outcome.state <- unique(outcome.data[[7]])
         outcomes <- c("heart attack","heart failure","pneumonia")
-        ## check if state is valid 
+        ## check if state arg is valid
         if (!sum(outcome.state==state)) {
                 stop("invalid state")
                 
@@ -28,7 +27,8 @@ rankhospital <- function(state, outcome,rank="best") {
         else if (outcome=="pneumonia"){
                 ouctomes.index <- 23
         }
-        ## splicing the dataframe to retain the hospital name, state and outcome value
+        ## prep the data frame for analysis
+       
         outcome.filtered <- outcome.data[,c(2,7,outcomes.index)]
         colnames(outcome.filtered) <- c("Hospital","State","Outcome")
         ## coercing the type for outcome from Char to numeric (NAs will be introduced but that's OK)
@@ -36,21 +36,33 @@ rankhospital <- function(state, outcome,rank="best") {
         ## selecting the state observations
         outcome.filtered <- outcome.filtered[outcome.filtered$State==state,]
         ## Now, let's get the outcome values, order them, remove the NA and find a rank value
-        outcome.ranked <- sort(unique(outcome.filtered$Outcome),na.last=NA, decreasing =TRUE)
-        ## find the rank
-        if (rank > length(outcome.ranked)){
-                return("NA")
-        }
-        if (rank=="best") {
-                rank <- 1
+        outcome.ranked <- sort(outcome.filtered$Outcome,na.last=NA, decreasing =FALSE)
+        outcome.maxrank <- length(outcome.ranked)
+        ## Set numeric rank to best and worst
+        if (!is.numeric(rank)){
+                if (rank=="best") {
+                        rank <- 1
+                } 
+                else if (rank=="worst"){
+                        rank <- outcome.maxrank
+                }
         } 
-        else if (rank=="worst"){
-                rank <- length(outcome.ranked)
+        if (as.numeric(rank) > outcome.maxrank) {
+                return(NA)
         }
-        else if (is.numeric(rank)){
-                rank <- rank
-        }
+                
+        rank <- as.numeric(rank)
+#        if (rank > length(outcome.ranked)){
+#               return("NA")
+#        }
+#        else if (is.numeric(rank)){
+#                rank <- as.numeric(rank)
+#        }
+        ## splicing the dataframe to retain the hospital name, state and outcome value
+
+
         outcome.rankvalue <- outcome.ranked[rank]
+        message(outcome.rankvalue)
         outcome.filtered <- outcome.filtered[outcome.filtered$Outcome==outcome.rankvalue & !(is.na(outcome.filtered$Outcome)),]
         
         # doing some ranking
