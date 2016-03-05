@@ -1,8 +1,7 @@
 ## Rankall function
 rankall <- function(outcome, num = "best") {
-        ## Temporary handling of rank
-        rank <- num
-        if (!is.numeric(num)){
+                rank <- num
+          if (!is.numeric(num)){
                if (num=="best") {
                        rank <- 1
                } 
@@ -13,9 +12,8 @@ rankall <- function(outcome, num = "best") {
                      return(NA)   
                 }
         } 
-        else {
-         rank <- num
-        }
+        
+
                 
         ## Read outcome data
         outcome.index <- getoutcomeindex(outcome)
@@ -24,13 +22,9 @@ rankall <- function(outcome, num = "best") {
                 stop("invalid outcome")
         }
         outcome.data <- readoutcomedata("data/outcome-of-care-measures.csv",outcome.index)
-       ## if (!validstate(state,outcome.data$State)) {
-       ##                stop("invalid state")    
-       ## }
-        ## initialize the dataframe we will be returning
         outcome.all.rank <- data.frame(Hospital=character(),State=character())
         ## For each state, find the hospital of the given rank
-        for (state in unique(outcome.data$State)) {
+        for (state in sort(unique(outcome.data$State))) {
                 ## get the outcome data for the state
                 outcome.data.state <- outcome.data[outcome.data$State == state,]
                 outcome.data.state <- outcome.data.state[order(outcome.data.state$Outcome,outcome.data.state$Hospital,na.last=NA,decreasing=FALSE),]
@@ -55,7 +49,7 @@ rankall <- function(outcome, num = "best") {
         
         ## Return a data frame with the hospital names and the
         ## (abbreviated) state name
-        ## Spiff up the data frame (remove NAs and sort)
-        
+        ## Spiff up the data frame (sort by state)
+        ##outcome.all.rank <- outcome.all.rank[sort(outcome.all.rank$State),]
         return(outcome.all.rank)
 }
