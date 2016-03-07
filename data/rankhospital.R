@@ -24,7 +24,7 @@ rankhospital <- function(state, outcome,rank="best") {
                 outcomes.index <- 17
         }
         else if (outcome=="pneumonia"){
-                ouctomes.index <- 23
+                outcomes.index <- 23
         }
         ## prep the data frame for analysis
        
@@ -59,7 +59,7 @@ rankhospital <- function(state, outcome,rank="best") {
 #        }
         ## splicing the dataframe to retain the hospital name, state and outcome value
 
-
+        outcome.filtered <- outcome.filtered[order(outcome.filtered$Outcome,outcome.filtered$Hospital),]
         outcome.rankvalue <- outcome.ranked[rank]
         ##message(outcome.rankvalue)
         outcome.filtered <- outcome.filtered[outcome.filtered$Outcome==outcome.rankvalue & !(is.na(outcome.filtered$Outcome)),]

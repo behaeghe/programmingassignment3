@@ -27,6 +27,8 @@ rankall <- function(outcome, num = "best") {
         for (state in sort(unique(outcome.data$State))) {
                 ## get the outcome data for the state
                 outcome.data.state <- outcome.data[outcome.data$State == state,]
+                ## Here's how to order a data frame, call the order function on the cols you need to sort and apply to the rows of the data frame
+                ## Remember data frames are addressed row(aka observations), variables (col)
                 outcome.data.state <- outcome.data.state[order(outcome.data.state$Outcome,outcome.data.state$Hospital,na.last=NA,decreasing=FALSE),]
                 ## get and order the outcome values
                 outcome.data.ranked <-sort(outcome.data.state$Outcome,na.last=NA,decreasing=FALSE)
